@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý sản phẩm</title>
+</head>
+<body>
+<button onclick="showList()">List</button>
+<button onclick="getAdd()">Add</button>
+<div id="disp"></div>
+<script>
+    let listProduct = ['Adidas', 'Nike', 'Jodan']; // b1: khai báo 1 mảng sp
+    showList();
+    function showList() {
+        let str = '<h1>DANH SÁCH SẢN PHẨM</h1>';
+        str += `<p>Số lượng sản phẩm: ${listProduct.length}</p>`;
+        for (let i = 0; i < listProduct.length; i++) {
+            str += `<h3>${listProduct[i]} <button onclick="edit(${i})">Edit</button></h3>`; // tại sao dùng dâu nháy này????
+        }
+        document.getElementById('disp').innerHTML = str;
+    }
+
+    function getAdd() {
+        let str = '<input id="inp"> <button onclick="add()">Create</button>';
+        document.getElementById('disp').innerHTML = str;
+    }
+    function add() {
+        listProduct.push(document.getElementById('inp').value);
+        showList();
+    }
+    function edit(index) {
+        let str = `<input id="inp" value="${listProduct[index]}"> <button onclick="save(${index})">Save</button>`;
+        document.getElementById('disp').innerHTML = str;
+    }
+    function save(index) {
+        listProduct[index] = document.getElementById('inp').value;
+        showList();
+    }
+</script>
+</body>
+</html>
